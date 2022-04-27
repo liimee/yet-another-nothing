@@ -38,9 +38,9 @@ function load() {
     } else {
       return v.json();
     }
-  }).then(_ => {
+  }).then(() => {
     lo.value = false;
-  }).catch(_ => { p.value = true; loading.value = false; })
+  }).catch(() => { p.value = true; loading.value = false; })
 }
 </script>
 
