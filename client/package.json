@@ -4,6 +4,8 @@
   "license": "MIT",
   "dependencies": {
     "@fontsource/work-sans": "^4.5.7",
-    "@fontsource/fira-sans": "^4.5.8"
+    "@fontsource/fira-sans": "^4.5.8",
+    "@inkline/inkline": "^3.0.8",
+    "vue": "^3.2.33"
   }
 }

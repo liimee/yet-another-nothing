@@ -1,6 +1,6 @@
 <template>
-  <Transition>
-    <i-header v-if="lo" fullscreen cover id="header" class="_color:white _padding-left:4">
+  <Transition mode='out-in'>
+    <i-header key=1 v-if="lo" fullscreen cover id="header" class="_color:white _padding-left:4">
       <h1>Welcome</h1>
       <div class="_width:50%" style="min-width: 300px;">
         <i-form-group>
@@ -13,6 +13,7 @@
         </i-button>
       </div>
     </i-header>
+    <desktop key=2 v-else />
   </Transition>
   <i-modal v-model="p" size="sm">
     <template #header>Failed :(</template>
@@ -22,6 +23,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue';
+import desktop from './desktop.vue';
 
 const loading = ref(false);
 const lo = ref(true);
@@ -59,7 +61,7 @@ function load() {
 <style scoped>
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.5s ease;
+  transition: opacity 0.8s ease;
 }
 
 .v-enter-from,
