@@ -1,0 +1,9 @@
+{
+  "name": "client",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@fontsource/work-sans": "^4.5.7",
+    "@fontsource/fira-sans": "^4.5.8"
+  }
+}
