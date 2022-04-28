@@ -3,8 +3,9 @@ import add from 'add';
 
 registerApp({
   id: 'a',
-  onInit: (token) => {
+  onInit: (token, {startWindow}) => {
     console.log(add([1,1]))
+    startWindow({id: 'a'})
   }
 })
 

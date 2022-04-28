@@ -10,6 +10,8 @@ const app = express();
 
 const su: string[] = [];
 
+const token: {[key: string]: string[]} = {};
+
 app.use(cors({
   origin: env.CLIENT as string
 }));
@@ -35,7 +37,9 @@ app.post('/token', bodyParser.json(), (req, res) => {
 
   //TODO
   
-  res.json({token: rand()})
+  const j = rand();
+  if(token[req.body.id]) token[req.body.id].push(j); else token[req.body.id] = [j];
+  res.json({token: j})
 })
 
 function rand() {

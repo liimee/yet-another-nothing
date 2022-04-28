@@ -3,8 +3,15 @@ let started = false;
 
 type appQ = { id: string, re: (s: string) => void };
 
+export type window = {
+  id: string
+}
+
 const appQueue: appQ[] = [];
 const registered: string[] = [];
+const windows: window[] = [];
+
+const l: {[key: string]: ((...v: any[]) => void)[]} = {}
 
 export function start(s: string) {
   if (!started) {
@@ -21,6 +28,21 @@ export function start(s: string) {
 export function addToQueue(a: appQ) {
   appQueue.push(a);
   if (started) doQ();
+}
+
+export function startWindow(b: window) {
+  windows.push(b);
+
+  notify('windowsChange', windows);
+}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function notify(a: string, ...b: any[]) {
+  (l[a]||[]).forEach(v => v(...b));
+}
+
+export function listen(a: ((...v: any[]) => void), b: string) {
+  if(l[b]) l[b].push(a); else l[b] = [a];
 }
 
 function doQ() {

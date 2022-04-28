@@ -3,11 +3,13 @@
 </template>
 
 <script lang="ts" setup>
-import {start} from './core';
+import {start, listen} from './core';
 
 const props = defineProps(['su']);
 
 start(props.su);
+
+listen(console.log, 'windowsChange')
 </script>
 
 <style scoped>
