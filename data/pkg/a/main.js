@@ -11,6 +11,7 @@ registerApp({
 
 function start(startWindow) {
   startWindow({id: 'a', title: 'hello', render: (c) => {
+    c.style.padding = '6px';
     const a = document.createElement('div')
     a.innerText = 'what';
     c.appendChild(a);

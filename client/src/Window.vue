@@ -31,6 +31,11 @@
   ----padding-left: 0 !important;
   ----padding-right: 0 !important;
   ----padding-bottom: 0 !important;
+
+  ----border-top-left-radius: 6px !important;
+  ----border-top-right-radius: 6px !important;
+  ----border-bottom-left-radius: 6px !important;
+  ----border-bottom-right-radius: 6px !important;
 }
 
 .handle {

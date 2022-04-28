@@ -7,9 +7,11 @@
           <i-form-label>Password</i-form-label>
           <i-input v-model="pass" class="_margin-x:auto" type="password" />
         </i-form-group>
-        <i-button @click="load" :disabled="loading" class="_margin-y:1" color="primary">
-          <span v-if="!loading">OK</span>
-          <i-loader v-else />
+        <i-button type="submit" :loading="loading" @click="load" :disabled="loading" class="_margin-y:1" color="primary">
+          <span>OK</span>
+          <template #loading>
+            <i-loader />
+          </template>
         </i-button>
       </div>
     </i-header>
