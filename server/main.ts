@@ -27,6 +27,17 @@ app.post('/su', bodyParser.json(), (req, res) => {
   }
 })
 
+app.post('/token', bodyParser.json(), (req, res) => {
+  if(!su.includes(req.body.su||'')) {
+    res.sendStatus(403);
+    return;
+  }
+
+  //TODO
+  
+  res.json({token: rand()})
+})
+
 function rand() {
   const q = 'abcdefghijklmnopqrstuvwxyz1234567890'
   let p = '';

@@ -13,7 +13,7 @@
         </i-button>
       </div>
     </i-header>
-    <desktop key=2 v-else />
+    <desktop key=2 :su="su" v-else />
   </Transition>
   <i-modal v-model="p" size="sm">
     <template #header>Failed :(</template>
@@ -29,6 +29,7 @@ const loading = ref(false);
 const lo = ref(true);
 const p = ref(false);
 const pass = ref('');
+const su = ref('');
 
 function load() {
   loading.value = true;
@@ -40,8 +41,9 @@ function load() {
     } else {
       return v.json();
     }
-  }).then(() => {
+  }).then(v => {
     lo.value = false;
+    su.value = v.t;
   }).catch(() => { p.value = true; loading.value = false; })
 }
 </script>
