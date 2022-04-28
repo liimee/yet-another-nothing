@@ -1,12 +1,12 @@
 <template>
   <div
     ref="win"
-    :style="{ left: x + 'px', top: y + 'px', width: w+'px', height: h+'px', padding: '6px' }"
+    :style="{ left: x + 'px', top: y + 'px', width: w+'px', height: h+'px', padding: '6px', minWidth: '200px', minHeight: '200px' }"
     class="_position:absolute"
   >
     <i-card class="_width:100% _height:100%">
       <template #header>
-        <div class="handle">
+        <div class="handle _display:flex">
           <i-button-group class="btns">
             <i-button color="danger" size="sm" @click="close" title="Close">
               <i-icon size="sm" name="ink-times" />
@@ -15,7 +15,7 @@
               <i-icon size="sm" name="ink-minus" />
             </i-button>
           </i-button-group>
-          <span class="_vertical-align:middle _margin-x:1">{{ props.p.title }}</span>
+          <span class="_align-items:center _display:flex _justify-content:center _margin-x:1 _flex:fill _text:truncate">{{ props.p.title }}</span>
         </div>
       </template>
       <div ref="winc" class="co"></div>
