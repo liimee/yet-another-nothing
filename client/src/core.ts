@@ -64,6 +64,12 @@ export function listen(a: ((...v: any[]) => void), b: string) {
   if(l[b]) l[b].push(a); else l[b] = [a];
 }
 
+export function closeWin(gid: number) {
+  windows.splice(windows.findIndex(v => v.gid === gid), 1);
+
+  notify('windowsChange', windows);
+}
+
 function doQ() {
   appQueue.forEach(v => {
     if (!registered.includes(v.id)) {

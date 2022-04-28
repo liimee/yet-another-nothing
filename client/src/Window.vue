@@ -8,7 +8,7 @@
       <template #header>
         <div class="handle">
           <i-button-group class="btns">
-            <i-button color="danger" size="sm">
+            <i-button color="danger" size="sm" @click="close" title="Close">
               <i-icon size="sm" name="ink-times" />
             </i-button>
             <i-button color="info" size="sm">
@@ -48,6 +48,7 @@
 <script setup lang="ts">
 import interact from 'interactjs';
 import { onMounted, ref, type Ref } from 'vue';
+import {closeWin} from './core';
 
 const props = defineProps(['p']);
 
@@ -87,4 +88,8 @@ onMounted(() => {
 
   props.p.render(winc.value);
 })
+
+function close() {
+  closeWin(props.p.gid);
+}
 </script>
