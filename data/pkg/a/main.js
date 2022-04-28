@@ -5,12 +5,18 @@ registerApp({
   id: 'a',
   onInit: (token, {startWindow}) => {
     console.log(add([1,1]))
-    startWindow({id: 'a', title: 'hello', render: (c) => {
-      const a = document.createElement('div')
-      a.innerText = 'what';
-      c.appendChild(a);
-    }})
+    start(startWindow)
   }
 })
+
+function start(startWindow) {
+  startWindow({id: 'a', title: 'hello', render: (c) => {
+    const a = document.createElement('div')
+    a.innerText = 'what';
+    c.appendChild(a);
+  }, onClose: ()=>{
+    start(startWindow)
+  }})
+}
 
 console.log('aaaaaaaaa')

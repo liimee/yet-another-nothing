@@ -1,4 +1,4 @@
-import {addToQueue, startWindow, type winp} from './core';
+import {addToQueue, startWindow, type winp, listen} from './core';
 
 type reg = {
   id: string,
@@ -15,4 +15,8 @@ export function registerApp(reg: reg) {
 
 function s(win: winp) {
   startWindow(win)
+
+  listen((a) => {
+    if(a[1] == 'close') if(win.onClose) win.onClose(a[2])
+  }, 'windowsChange', win.token+':'+win.id)
 }

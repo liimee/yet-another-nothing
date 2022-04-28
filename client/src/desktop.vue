@@ -16,8 +16,8 @@ const props = defineProps(['su']);
 start(props.su);
 
 listen(v => {
-  windows.value = [...v];
-}, 'windowsChange')
+  windows.value = [...v[0]];
+}, 'windowsChange', 'desktop')
 </script>
 
 <style scoped>

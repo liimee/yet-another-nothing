@@ -13,6 +13,8 @@ export type window = {
 export type winp = {
   id: string,
   title: string,
+  token: string,
+  onClose?: (id: string) => void,
   render: (arg0: HTMLElement) => void
 }
 
@@ -22,7 +24,7 @@ const windows: window[] = [];
 let lastwindow = 0;
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-const l: {[key: string]: ((...v: any[]) => void)[]} = {}
+const l: {[key: string]: ({id: string, fun: (...v: any[]) => void})[]} = {}
 
 export function start(s: string) {
   if (!started) {
@@ -56,18 +58,19 @@ export function startWindow(b: winp) {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function notify(a: string, ...b: any[]) {
-  (l[a]||[]).forEach(v => v(...b));
+  (l[a]||[]).forEach(v => v.fun([...b]));
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function listen(a: ((...v: any[]) => void), b: string) {
-  if(l[b]) l[b].push(a); else l[b] = [a];
+export function listen(a: ((...v: any[]) => void), b: string, c: string) {
+  if(l[b]) l[b].push({id: c, fun: a}); else l[b] = [{id: c, fun: a}];
 }
 
 export function closeWin(gid: number) {
+  const k = windows.find(v => v.gid === gid)
   windows.splice(windows.findIndex(v => v.gid === gid), 1);
 
-  notify('windowsChange', windows);
+  notify('windowsChange', windows, 'close', k);
 }
 
 function doQ() {
