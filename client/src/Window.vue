@@ -15,7 +15,7 @@
               <i-icon size="sm" name="ink-minus" />
             </i-button>
           </i-button-group>
-          {{ props.p.title }}
+          <span class="_vertical-align:middle _margin-x:1">{{ props.p.title }}</span>
         </div>
       </template>
       <div ref="winc" class="co"></div>
