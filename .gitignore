@@ -2,3 +2,5 @@ node_modules
 /data/*
 !data/pkg/
 !data/pkg/a
+/build
+/server/*.js

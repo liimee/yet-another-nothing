@@ -16,6 +16,8 @@ app.use(cors({
   origin: env.CLIENT as string
 }));
 
+if(process.argv.includes('--with-client')) app.use(express.static('./build'))
+
 app.post('/su', bodyParser.json(), (req, res) => {
   if(!existsSync('./data/.pass')) {res.sendStatus(500); return;}
 
