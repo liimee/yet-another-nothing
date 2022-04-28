@@ -10,6 +10,10 @@ export function start(s: string) {
   if (!started) {
     su = s;
     started = true;
+    const modules = import.meta.glob('../../data/pkg/*/main.js')
+    for (const path in modules) {
+      modules[path]()
+    }
     doQ();
   }
 }
@@ -37,9 +41,4 @@ function doQ() {
       })
     }
   })
-}
-
-const modules = import.meta.glob('../../data/pkg/*/main.js')
-for (const path in modules) {
-  modules[path]()
 }
