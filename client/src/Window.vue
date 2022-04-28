@@ -18,7 +18,7 @@
           {{ props.p.title }}
         </div>
       </template>
-      aaa
+      <div ref="winc" class="co"></div>
     </i-card>
   </div>
 </template>
@@ -39,6 +39,10 @@
   -moz-user-select: none;
   -webkit-user-select: none;
 }
+
+.co {
+  overflow-x: auto;
+}
 </style>
 
 <script setup lang="ts">
@@ -53,6 +57,7 @@ const h = ref(200)
 const w = ref(400)
 
 const win = ref(null) as Ref<unknown> as Ref<HTMLElement>
+const winc = ref(null) as Ref<unknown> as Ref<HTMLElement>
 
 onMounted(() => {
   interact(win.value).draggable({
@@ -78,6 +83,8 @@ onMounted(() => {
         h.value = event.rect.height;
       }
     }
-  })
+  });
+
+  props.p.render(winc.value);
 })
 </script>

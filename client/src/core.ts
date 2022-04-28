@@ -6,12 +6,14 @@ type appQ = { id: string, re: (s: string) => void };
 export type window = {
   id: string,
   gid: number,
-  title: string
+  title: string,
+  render: (arg0: HTMLElement) => void
 }
 
 export type winp = {
   id: string,
-  title: string
+  title: string,
+  render: (arg0: HTMLElement) => void
 }
 
 const appQueue: appQ[] = [];
@@ -43,7 +45,8 @@ export function startWindow(b: winp) {
   windows.push({
     id: b.id,
     gid: lastwindow,
-    title: b.title
+    title: b.title,
+    render: b.render
   });
 
   lastwindow++;
