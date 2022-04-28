@@ -1,4 +1,4 @@
-import {addToQueue, startWindow, type winp, listen} from './core';
+import {addToQueue, startWindow, type winp, listen, stopListening} from './core';
 
 type reg = {
   id: string,
@@ -17,6 +17,9 @@ function s(win: winp) {
   startWindow(win)
 
   listen((a) => {
-    if(a[1] == 'close') if(win.onClose) win.onClose(a[2])
+    if(a[1] == 'close') {
+      if(win.onClose) win.onClose(a[2]);
+      stopListening(win.token+':'+win.id, 'windowsChange');
+    }
   }, 'windowsChange', win.token+':'+win.id)
 }

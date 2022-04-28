@@ -73,6 +73,12 @@ export function closeWin(gid: number) {
   notify('windowsChange', windows, 'close', k);
 }
 
+export function stopListening(id: string, ev: string) {
+  if(l[ev]) {
+    l[ev].splice(l[ev].findIndex(v => v.id === id), 1)
+  }
+}
+
 function doQ() {
   appQueue.forEach(v => {
     if (!registered.includes(v.id)) {
