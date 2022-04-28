@@ -1,21 +1,29 @@
 <template>
-  <Transition mode='out-in'>
-    <i-header key=1 v-if="lo" fullscreen cover id="header" class="_color:white _padding-left:4">
-      <h1>Welcome</h1>
-      <div class="_width:50%" style="min-width: 300px;">
-        <i-form-group>
-          <i-form-label>Password</i-form-label>
-          <i-input v-model="pass" class="_margin-x:auto" type="password" />
-        </i-form-group>
-        <i-button type="submit" :loading="loading" @click="load" :disabled="loading" class="_margin-y:1" color="primary">
-          <span>OK</span>
-          <template #loading>
-            <i-loader />
-          </template>
-        </i-button>
-      </div>
+  <Transition mode="out-in">
+    <i-header key="1" v-if="lo" fullscreen cover id="header" class="_color:white _padding-left:4">
+      <i-form @submit="load">
+        <h1>Welcome</h1>
+        <div class="_width:50%" style="min-width: 300px;">
+          <i-form-group>
+            <i-form-label>Password</i-form-label>
+            <i-input v-model="pass" class="_margin-x:auto" type="password" />
+          </i-form-group>
+          <i-button
+            type="submit"
+            :loading="loading"
+            :disabled="loading"
+            class="_margin-y:1"
+            color="primary"
+          >
+            <span>OK</span>
+            <template #loading>
+              <i-loader />
+            </template>
+          </i-button>
+        </div>
+      </i-form>
     </i-header>
-    <desktop key=2 :su="su" v-else />
+    <desktop key="2" :su="su" v-else />
   </Transition>
   <i-modal v-model="p" size="sm">
     <template #header>Failed :(</template>
@@ -35,9 +43,11 @@ const su = ref('');
 
 function load() {
   loading.value = true;
-  fetch(import.meta.env.VITE_SERVER + '/su', {method: 'POST', headers: new Headers({
-    'Content-Type': 'application/json'
-  }), body: JSON.stringify({pass: pass.value})}).then(v => {
+  fetch(import.meta.env.VITE_SERVER + '/su', {
+    method: 'POST', headers: new Headers({
+      'Content-Type': 'application/json'
+    }), body: JSON.stringify({ pass: pass.value })
+  }).then(v => {
     if (v.status !== 200) {
       throw new Error("failed");
     } else {
