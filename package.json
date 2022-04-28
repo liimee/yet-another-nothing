@@ -25,7 +25,8 @@
   },
   "workspaces": [
     "client/",
-    "server/"
+    "server/",
+    "data/pkg/*"
   ],
   "private": true
 }
