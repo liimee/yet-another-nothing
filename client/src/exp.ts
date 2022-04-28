@@ -1,10 +1,9 @@
-import {addToQueue, startWindow} from './core';
-import type {window} from './core';
+import {addToQueue, startWindow, type winp} from './core';
 
 type reg = {
   id: string,
   onInit: (token: string, functions: {
-    startWindow: (win: window) => void
+    startWindow: (win: winp) => void
   }) => void
 }
 
@@ -14,6 +13,6 @@ export function registerApp(reg: reg) {
   })})
 }
 
-function s(win: window) {
+function s(win: winp) {
   startWindow(win)
 }

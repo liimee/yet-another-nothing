@@ -5,7 +5,7 @@ registerApp({
   id: 'a',
   onInit: (token, {startWindow}) => {
     console.log(add([1,1]))
-    startWindow({id: 'a'})
+    startWindow({id: 'a', title: 'hello'})
   }
 })
 
