@@ -74,12 +74,14 @@ let lastwindow = 0;
 
 export type desktopEntry = {
   title: string,
-  onClick: ()=>void
+  onClick: ()=>void,
+  icon?: string
 };
 
 const desktopEntries: desktopEntry[] = [];
 
 export function regDesktop(a: desktopEntry) {
+  if(!(/^data:image\/(png|jpe?g);base64,.*$/s.test(a.icon||''))) a.icon = undefined;
   desktopEntries.push(a);
 
   notify('desktopEntries', desktopEntries);

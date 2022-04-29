@@ -6,7 +6,7 @@
         <div class="_width:50%" style="min-width: 300px;">
           <i-form-group>
             <i-form-label>Password</i-form-label>
-            <i-input v-model="pass" class="_margin-x:auto" type="password" />
+            <i-input :disabled="loading" v-model="pass" class="_margin-x:auto" type="password" />
           </i-form-group>
           <i-button
             type="submit"

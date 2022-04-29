@@ -19,7 +19,10 @@
         </i-button>
         <template #header>Menu</template>
         <template #body>
-          <i-dropdown-item v-for="(v, i) in entries" :key="i" @click="v.onClick">{{ v.title }}</i-dropdown-item>
+          <i-dropdown-item v-for="(v, i) in entries" :key="i" @click="v.onClick">
+          <img :src="v.icon" v-if="v.icon!=null" style="width:2em;height:2em;" class="_margin-right:1/2" />
+          <span class="_vertical-align:middle _text:truncate _display:inline-block" style="max-width: 400px;" :title="v.title">{{ v.title }}</span>
+          </i-dropdown-item>
         </template>
       </i-dropdown>
     </div>
