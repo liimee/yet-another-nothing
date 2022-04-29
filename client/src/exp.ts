@@ -1,4 +1,4 @@
-import {addToQueue, startWindow, type winp, listen, stopListening} from './core';
+import {appQueue, startWindow, type winp, listen, stopListening, type desktopEntry, regDesktop} from './core';
 
 type reg = {
   id: string,
@@ -8,9 +8,13 @@ type reg = {
 }
 
 export function registerApp(reg: reg) {
-  addToQueue({id: reg.id, re: (v) => reg.onInit(v, {
+  appQueue.addToQueue((v) => reg.onInit(v, {
     startWindow: s
-  })})
+  }), reg.id)
+}
+
+export function registerDesktopEntry(w: desktopEntry) {
+  regDesktop(w);
 }
 
 function s(win: winp) {

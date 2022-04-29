@@ -1,4 +1,4 @@
-import {registerApp} from 'yet-another-nothing';
+import {registerApp, registerDesktopEntry} from 'yet-another-nothing';
 import add from 'add';
 
 registerApp({
@@ -6,6 +6,11 @@ registerApp({
   onInit: (token, {startWindow}) => {
     console.log(add([1,1]))
     start(startWindow)
+
+    registerDesktopEntry({
+      title: 'a',
+      onClick: () => start(startWindow)
+    })
   }
 })
 
@@ -15,8 +20,6 @@ function start(startWindow) {
     const a = document.createElement('div')
     a.innerText = 'what';
     c.appendChild(a);
-  }, onClose: ()=>{
-    start(startWindow)
   }})
 }
 
