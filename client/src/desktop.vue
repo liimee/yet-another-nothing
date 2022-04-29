@@ -1,6 +1,6 @@
 <template>
   <div class="_position:absolute _width:100% _height:100%" id="back">
-    <Window v-for="v in windows" :p="v" :key="v.gid" />
+    <Window v-for="v in windows" :p="v" :key="v.gid" ref="iref" @p="() => gmt(v.gid)" />
     <div
       class="_position:fixed-bottom"
       :style="{
@@ -35,6 +35,16 @@ let windows: Ref<window[]> = ref([]);
 let entries: Ref<desktopEntry[]> = ref([]);
 
 const props = defineProps(['su']);
+const iref: Ref<{ k: number, last: (arg0: number) => void }[]> = ref([])
+
+var last = 1;
+
+function gmt(i: number) {
+  last++;
+
+  console.log(iref.value)
+  iref.value.find(v => v.k === i)?.last(last);
+}
 
 start(props.su);
 
