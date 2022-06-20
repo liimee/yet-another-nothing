@@ -99,11 +99,18 @@ onMounted(() => {
     edges: { top: true, left: true, bottom: true, right: true },
     listeners: {
       move: function (event) {
-        x.value += event.deltaRect.left
-        y.value += event.deltaRect.top
+        const a = x.value + event.deltaRect.left
+        const b = y.value + event.deltaRect.top
 
-        w.value = event.rect.width;
-        h.value = event.rect.height;
+        if(event.rect.width>=200) {
+          x.value = a;
+          w.value = event.rect.width;
+        }
+        
+        if(event.rect.height>=200) {
+          y.value = b;
+          h.value = event.rect.height;
+        }
       }
     }
   });
